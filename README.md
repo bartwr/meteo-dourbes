@@ -2,6 +2,8 @@
 
 Get meteo data for Dourbes (Belgium) and save to CSV.
 
+cd data/ && touch temp.csv precip.csv humidity.csv wind_strenght.csv wind_direction.csv pressure.csv radiation.csv
+
 ## How to run?
 
 Make sure you have NodeJS version 18.6 installed.
@@ -22,3 +24,12 @@ This script stores data in CSV files. Go to one of the following URL's to downlo
 - $IP/data/wind_direction.csv
 - $IP/data/wind_strenght.csv
 
+## Deploy to server
+
+    forever start server.js
+
+Check running processes:
+
+- `forever list`
+
+https://blog.logrocket.com/running-node-js-scripts-continuously-forever/
