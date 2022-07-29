@@ -57,6 +57,11 @@ var server = http.createServer(async (req, res) => {
     returnCsvFile(res, req.url);
   }
 
+  else if (req.url === '/.well-known/acme-challenge/XdF0Ji6qk4V8HVCrpDNgXCF3UeG0AEVbOJQzXP0toZM') {
+    res.write('XdF0Ji6qk4V8HVCrpDNgXCF3UeG0AEVbOJQzXP0toZM.MH7QTtVkzm74wa8HpAinK1M8zrrtWdUSrqDIxNSmANQ');
+    res.end();
+  }
+
   else {
     res.end('Invalid request');
   }
