@@ -76,14 +76,17 @@ const getData = (fileContents, key) => {
 const saveToCsv = (fileName, data) => {
   const fs = require("fs");
   // Get file contents of existing CSV file
-  const fileContents = fs.readFileSync(`data/${fileName}`, 'utf8');
+  let fileContents;
+  if (fs.existsSync(`data/${fileName}`)) {
+    fileContents = fs.readFileSync(`data/${fileName}`, 'utf8');
+  }
   // Create stream for writing to existing CSV file
   const stream = fs.createWriteStream(`data/${fileName}`, {flags: 'a'});// a = append
   for (let x of data) {
     const timestamp = x[0];
     // Only write to file if timestamp does not exist in this file yet
     // to prevent duplicates
-    if(fileContents.indexOf(timestamp) > -1) continue;
+    if(fileContents && fileContents.indexOf(timestamp) > -1) continue;
     // Write to CSV
     stream.write(x.join(",") + "\r\n");
   }

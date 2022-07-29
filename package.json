@@ -1,0 +1,24 @@
+{
+  "name": "meteo-dourbes",
+  "version": "1.0.0",
+  "description": "Get meteo data for Dourbes (Belgium) and save to CSV.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start-nodemon": "./node_modules/nodemon/bin/nodemon.js server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bartwr/meteo-dourbes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bartwr/meteo-dourbes/issues"
+  },
+  "homepage": "https://github.com/bartwr/meteo-dourbes#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
