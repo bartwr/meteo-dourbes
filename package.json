@@ -20,5 +20,8 @@
   "homepage": "https://github.com/bartwr/meteo-dourbes#readme",
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
