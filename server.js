@@ -1,5 +1,19 @@
 const fs = require('fs');
 const http = require('http');
+const csvtojson = require('csvtojson');
+
+const returnJsonFor = async (res, key) => {
+  const json = await csvtojson({
+    noheader:true,
+  }).fromFile(`${__dirname}/data/${key}.csv`);
+  res.writeHead(200, {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+  }); 
+  res.write(JSON.stringify(json));
+  res.end();
+}
 
 const returnCsvFile = (res, url) => {
   // Set response header
@@ -20,7 +34,7 @@ const returnCsvFile = (res, url) => {
   res.end();
 }
 
-var server = http.createServer((req, res) => {
+var server = http.createServer(async (req, res) => {
 
   const allowedCsvPathNames = [
     '/data/temp.csv',
@@ -30,9 +44,16 @@ var server = http.createServer((req, res) => {
     '/data/wind_direction.csv',
     '/data/pressure.csv',
     '/data/radiation.csv'
-  ]
+  ];
 
-  if (allowedCsvPathNames.indexOf(req.url) > -1) {
+  if (req.url === '/api/temp') {
+    const json = await returnJsonFor(res, 'temp');
+  }
+  else if (req.url === '/api/precip') {
+    const json = await returnJsonFor('precip');
+  }
+
+  else if (allowedCsvPathNames.indexOf(req.url) > -1) {
     returnCsvFile(res, req.url);
   }
 
