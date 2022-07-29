@@ -50,7 +50,7 @@ var server = http.createServer(async (req, res) => {
     const json = await returnJsonFor(res, 'temp');
   }
   else if (req.url === '/api/precip') {
-    const json = await returnJsonFor('precip');
+    const json = await returnJsonFor(res, 'precip');
   }
 
   else if (allowedCsvPathNames.indexOf(req.url) > -1) {
