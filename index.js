@@ -26,8 +26,8 @@ const config = {
   temp: {line: 1},
   precip: {line: 1},
   humidity: {line: 1},
-  wind_strenght: {line: 13},
-  wind_direction: {line: 16, textToRemove: `var directionsTxt = `},
+  // wind_strenght: {line: 13},
+  // wind_direction: {line: 16, textToRemove: `var directionsTxt = `},
   pressure: {line: 1},
   radiation: {line: 1}
 }
@@ -53,15 +53,15 @@ const getLine = (file, line, textToRemove) => {
   const arrayAsText = theLine.replace(textToRemove, '').replace(';', '');
   // Parse string to JavaScript variable
   const response = JSON.parse(arrayAsText);
+  // Object.entries()
   // If it was an object: convert to array
-  if(typeof response === 'object') {
-    var arrayFromObject = [];
-    for (let key in response) {
-      arrayFromObject.push([key, response[key]]);
-    }
-    return arrayFromObject;
+  let i = 1;
+  var arrayFromObject = [];
+  for (let key in response) {
+    arrayFromObject.push(response[key]);
+    i++;
   }
-  return response;
+  return arrayFromObject;
 }
 
 const getData = (fileContents, key) => {
@@ -83,11 +83,12 @@ const saveToCsv = (fileName, data) => {
   // Create stream for writing to existing CSV file
   const stream = fs.createWriteStream(`data/${fileName}`, {flags: 'a'});// a = append
   for (let x of data) {
-    const timestamp = x[0];
+    const timestamp = x[1];
     // Only write to file if timestamp does not exist in this file yet
     // to prevent duplicates
     if(fileContents && fileContents.indexOf(timestamp) > -1) continue;
     // Write to CSV
+    // console.log('x', x);
     stream.write(x.join(",") + "\r\n");
   }
   stream.end();
