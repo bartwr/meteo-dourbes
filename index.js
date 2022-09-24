@@ -83,7 +83,7 @@ const saveToCsv = (fileName, data) => {
   // Create stream for writing to existing CSV file
   const stream = fs.createWriteStream(`data/${fileName}`, {flags: 'a'});// a = append
   for (let x of data) {
-    const timestamp = x[1];
+    const timestamp = x[0];
     // Only write to file if timestamp does not exist in this file yet
     // to prevent duplicates
     if(fileContents && fileContents.indexOf(timestamp) > -1) continue;
