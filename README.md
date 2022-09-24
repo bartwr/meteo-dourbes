@@ -26,13 +26,32 @@ This script stores data in CSV files. Go to one of the following URL's to downlo
 
 ## Deploy to server
 
+At the moment this API runs on https://meteo-dourbes.bartroorda.nl
+
+To connect to this server, run:
+
+     ssh root@162.55.161.20
+
+To see running processes:
+
+    forever list
+
+To update the code repository:
+
+    cd ~/dev/meteo-dourbes
+    git pull
+
+To start the server
+
     forever start server.js
 
-Check running processes:
+To restart the server
 
-- `forever list`
+    forever restart server.js
 
-https://blog.logrocket.com/running-node-js-scripts-continuously-forever/
+Info on forever: 
+
+- https://blog.logrocket.com/running-node-js-scripts-continuously-forever/
 
 ## On SSL
 
