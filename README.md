@@ -2,7 +2,9 @@
 
 Get meteo data for Dourbes (Belgium) and save to CSV.
 
-cd data/ && touch temp.csv precip.csv humidity.csv wind_strenght.csv wind_direction.csv pressure.csv radiation.csv
+## Before first run
+
+    cd data/ && touch temp.csv precip.csv humidity.csv wind_strenght.csv wind_direction.csv pressure.csv radiation.csv
 
 ## How to run?
 
